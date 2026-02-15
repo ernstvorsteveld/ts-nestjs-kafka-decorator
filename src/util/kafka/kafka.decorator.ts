@@ -34,6 +34,7 @@ export function KafkaProducer(cluster: string, topic: string) {
       if (typeof originalMethod !== 'function') {
         return;
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return originalMethod.apply(this, args);
       }
     };
