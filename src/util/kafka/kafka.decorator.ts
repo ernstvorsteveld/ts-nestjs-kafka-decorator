@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { KafkaRegistry } from './kafka-registry';
+import { KafkaRegistry } from './kafka.registry';
 
 export function KafkaProducer(cluster: string, topic: string) {
   return function (
