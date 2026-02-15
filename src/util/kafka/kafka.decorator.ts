@@ -22,7 +22,7 @@ export function KafkaProducer(cluster: string, topic: string) {
           headers,
           payload,
         );
-        const producer = KafkaRegistry.get(cluster, topic);
+        const producer = KafkaRegistry.INSTANCE.get(cluster, topic);
         await producer.send(topic, headers, payload);
       } catch (error) {
         console.error(

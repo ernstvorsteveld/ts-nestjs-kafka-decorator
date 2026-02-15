@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NestjsConsulKvRealtimeModule } from 'nestjs-consul-kv-realtime';
 import { ConfigModule } from '@nestjs/config';
+import { KafkaRegistryBuilder } from './util/kafka/kafka.registry';
 
 @Module({
   imports: [
@@ -21,6 +22,14 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: 'KAFKA_REGISTRY',
+      useFactory: () => {
+        return new KafkaRegistryBuilder('./.env/default').build();
+      },
+    },
+  ],
 })
 export class AppModule {}
