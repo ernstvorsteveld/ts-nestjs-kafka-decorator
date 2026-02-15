@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-// import { KafkaRegistry } from './kafka-registry';
+import { KafkaRegistry } from './kafka-registry';
 
 export function KafkaProducer(cluster: string, topic: string) {
   return function (
@@ -12,19 +12,18 @@ export function KafkaProducer(cluster: string, topic: string) {
 
     logger.error('hi');
 
-    descriptor.value = function (...args: any[]) {
+    descriptor.value = async function (...args: any[]) {
       try {
         const headers: Record<string, any> = args[0] as Record<string, any>;
         const payload: unknown = args[1];
 
-        // const producer = KafkaRegistry.get(cluster, topic);
-        // await producer.send(topic, headers, payload);
-
-        logger.error(
+        logger.debug(
           `[KafkaProducer] Cluster: ${cluster}, Topic: ${topic}`,
           headers,
           payload,
         );
+        const producer = KafkaRegistry.get(cluster, topic);
+        await producer.send(topic, headers, payload);
       } catch (error) {
         console.error(
           `[KafkaProducer Error] Cluster: ${cluster}, Topic: ${topic}`,
