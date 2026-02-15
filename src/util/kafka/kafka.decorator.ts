@@ -1,4 +1,3 @@
-// kafka.decorator.ts
 import { Logger } from '@nestjs/common';
 // import { KafkaRegistry } from './kafka-registry';
 
@@ -31,8 +30,6 @@ export function KafkaProducer(cluster: string, topic: string) {
           `[KafkaProducer Error] Cluster: ${cluster}, Topic: ${topic}`,
           error,
         );
-
-        // Optional: You could trigger an alert or secondary logging here
       }
 
       if (typeof originalMethod !== 'function') {
