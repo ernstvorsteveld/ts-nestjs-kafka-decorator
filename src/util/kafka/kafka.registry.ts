@@ -1,7 +1,19 @@
+import { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { KafkaProducerService } from './kafka.client';
 import { ClusterTopic, ReadProperties } from './kafka.read.properties';
 
-export class KafkaRegistry {
+export class KafkaRegistry implements OnModuleInit, OnModuleDestroy {
+  onModuleInit() {
+    this.instances.forEach((instance) => {
+      instance.onModuleInit();
+    });
+  }
+
+  onModuleDestroy() {
+    this.instances.forEach((instance) => {
+      instance.onModuleDestroy();
+    });
+  }
   public static INSTANCE: KafkaRegistry = new KafkaRegistry();
 
   private readonly instances = new Map<string, KafkaProducerService>();

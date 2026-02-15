@@ -13,7 +13,6 @@ export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
     });
 
     this.producer = this.kafka.producer();
-    this.onModuleInit();
   }
 
   async onModuleInit() {
