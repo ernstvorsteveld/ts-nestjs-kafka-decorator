@@ -45,7 +45,8 @@ describe('ReadProperties', () => {
     expect(result).toHaveLength(2);
     expect(result).toEqual([
       new ClusterTopic('cluster1', 'topic.1', 'localhost:9092, localhost:9093'),
-      new ClusterTopic('cluster2', 'topic.2', 'localhost:9092, localhost:9093'),
+      new ClusterTopic('cluster2', 'topic.2', 'localhost:9292, localhost:9293'),
     ]);
+    expect(result[0].getBrokers()).toHaveLength(2);
   });
 });
