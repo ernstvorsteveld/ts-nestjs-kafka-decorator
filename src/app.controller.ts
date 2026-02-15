@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Logger } from '@nestjs/common';
 import { AppService } from './app.service';
 import { KafkaProducer } from './util/kafka/kafka.decorator';
 
 @Controller()
 export class AppController {
+  logger = new Logger('AppController');
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -20,6 +21,6 @@ export class AppController {
 
   @KafkaProducer('local-craft', 'topic-test')
   send<T>(headers: Record<string, any>, payload: T): void {
-    console.log('Order processed locally.');
+    this.logger.debug('Order processed locally.', headers, payload);
   }
 }
