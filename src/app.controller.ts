@@ -18,7 +18,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @KafkaProducer('ClusterA', 'orders-topic')
+  @KafkaProducer('local-craft', 'topic-test')
   send<T>(headers: Record<string, any>, payload: T): void {
     console.log('Order processed locally.');
   }

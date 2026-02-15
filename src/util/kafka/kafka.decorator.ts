@@ -17,18 +17,11 @@ export function KafkaProducer(cluster: string, topic: string) {
         const headers: Record<string, any> = args[0] as Record<string, any>;
         const payload: unknown = args[1];
 
-        logger.debug(
-          `[KafkaProducer] Cluster: ${cluster}, Topic: ${topic}`,
-          headers,
-          payload,
-        );
+        logger.debug(`Cluster: ${cluster}, Topic: ${topic}`, headers, payload);
         const producer = KafkaRegistry.INSTANCE.get(cluster, topic);
         await producer.send(topic, headers, payload);
       } catch (error) {
-        console.error(
-          `[KafkaProducer Error] Cluster: ${cluster}, Topic: ${topic}`,
-          error,
-        );
+        console.error(`Error Cluster: ${cluster}, Topic: ${topic}`, error);
       }
 
       if (typeof originalMethod !== 'function') {
