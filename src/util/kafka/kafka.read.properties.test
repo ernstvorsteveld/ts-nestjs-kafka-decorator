@@ -1,4 +1,9 @@
 cloud.config.kafka.cluster1.brokers=localhost:9092, localhost:9093
 cloud.config.kafka.cluster1.api.key=secret
 cloud.config.kafka.cluster1.topic1=topic.1
-some.other.key=value
+some.other.key1=value
+
+cloud.config.kafka.cluster2.brokers=localhost:9292, localhost:9293
+cloud.config.kafka.cluster2.api.key=secret2
+cloud.config.kafka.cluster2.topic1=topic.2
+some.other.key2=value2

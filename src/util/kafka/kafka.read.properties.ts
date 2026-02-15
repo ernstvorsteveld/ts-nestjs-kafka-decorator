@@ -19,7 +19,7 @@ export class ReadProperties {
   }
 
   fromProperties(): ClusterTopic[] {
-    const reader = new ReadProperties('./.env/default');
+    const reader = new ReadProperties(this.file);
     const clusters: string[] = reader
       .getProperties('cloud.config.kafka')
       .map((property) => {
