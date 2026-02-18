@@ -9,13 +9,13 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    const headers: Record<string, any> = {
-      correlationId: '123-abc',
-      source: 'web-api',
-      timestamp: 1700000000,
-      retryEnabled: true,
-    };
-    this.send(headers, 'my payload');
+    // const headers: Record<string, any> = {
+    //   correlationId: '123-abc',
+    //   source: 'web-api',
+    //   timestamp: 1700000000,
+    //   retryEnabled: true,
+    // };
+    // this.send(headers, 'my payload');
     return this.appService.getHello();
   }
 

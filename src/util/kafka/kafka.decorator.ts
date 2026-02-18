@@ -10,8 +10,6 @@ export function KafkaProducer(cluster: string, topic: string) {
     const originalMethod: unknown = descriptor.value;
     const logger = new Logger('KafkaProducer');
 
-    logger.error('hi');
-
     descriptor.value = async function (...args: any[]) {
       try {
         const headers: Record<string, any> = args[0] as Record<string, any>;
